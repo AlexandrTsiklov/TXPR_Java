@@ -1,1 +1,1 @@
-Check src/java/ru/alexting
+Check src/main/java/ru/alexting
