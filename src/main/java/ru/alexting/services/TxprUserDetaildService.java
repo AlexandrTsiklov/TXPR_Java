@@ -12,12 +12,12 @@ import java.util.Optional;
 
 
 @Service
-public class TxprUserDetailsService implements UserDetailsService {
+public class TxprUserDetaildService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public TxprUserDetailsService(UserRepository userRepository) {
+    public TxprUserDetaildService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -25,8 +25,9 @@ public class TxprUserDetailsService implements UserDetailsService {
     public TxprUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUsername(username);
 
-        if(user.isEmpty())
+        if(user.isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
+        }
 
         return new TxprUserDetails(user.get());
     }

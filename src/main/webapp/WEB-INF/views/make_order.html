@@ -34,7 +34,9 @@
                 </button>
                 <div class="dropdown-menu" id="settings_menue" aria-labelledby="settings_button">
                   <button class="dropdown-item" type="button" onclick="show_history('from_make_order')">История</button>
-                  <a href="/txpr/logout" class="dropdown-item" type="button">Выйти</a>
+                  <form class="dropdown-item" th:method="post" th:action="@{/txpr/logout}">
+                    <input type="submit" style="background: none; border: none;" value="Выйти">
+                  </form>
                 </div>
               </div>
             </div>

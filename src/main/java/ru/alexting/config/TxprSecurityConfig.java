@@ -12,7 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import ru.alexting.security.TxprAuthProvider;
+import ru.alexting.util.TxprAuthErrorsHandler;
 
 
 @EnableWebSecurity
@@ -27,7 +29,7 @@ public class TxprSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
             .authorizeRequests()
             .antMatchers("/txpr/authorization", "/txpr/registration", "/error").permitAll()
             .antMatchers("/Images/**", "/CSS/**").permitAll()
@@ -38,6 +40,7 @@ public class TxprSecurityConfig extends WebSecurityConfigurerAdapter {
             .loginProcessingUrl("/txpr/commit-authorization")
             .defaultSuccessUrl("/txpr/home", true)
             .failureUrl("/txpr/authorization?error") // error - get parameter,
+            .failureHandler(authenticationFailureHandler())
             .and()
             .logout().logoutUrl("/txpr/logout").logoutSuccessUrl("/txpr/authorization");
     }
@@ -45,5 +48,10 @@ public class TxprSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.authenticationProvider(txprAuthProvider);
+    }
+
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new TxprAuthErrorsHandler();
     }
 }

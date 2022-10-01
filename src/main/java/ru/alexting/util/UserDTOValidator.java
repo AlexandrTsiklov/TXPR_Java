@@ -18,7 +18,6 @@ public class UserDTOValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UserAuthDTO userAuthDTO = (UserAuthDTO) target;
 
-        // if(actionDAO.getAction(action.getCompany()) != null)
         if(!userAuthDTO.getPassword1().equals(userAuthDTO.getPassword2()))
             errors.rejectValue("password1", "", "Пароли не совпадают!");
     }

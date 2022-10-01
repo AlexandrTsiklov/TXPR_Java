@@ -9,7 +9,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.alexting.models.User;
-import ru.alexting.services.TxprUserDetailsService;
+import ru.alexting.services.TxprUserDetaildService;
 
 import java.util.Collections;
 
@@ -17,11 +17,11 @@ import java.util.Collections;
 @Component
 public class TxprAuthProvider implements AuthenticationProvider {
 
-    private final TxprUserDetailsService userService;
+    private final TxprUserDetaildService userService;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public TxprAuthProvider(TxprUserDetailsService userService, PasswordEncoder passwordEncoder) {
+    public TxprAuthProvider(TxprUserDetaildService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -29,8 +29,8 @@ public class TxprAuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
-        User user = userService.loadUserByUsername(username).getUser();
 
+        User user = userService.loadUserByUsername(username).getUser();
         String password = authentication.getCredentials().toString();
 
         if(!passwordEncoder.matches(password, user.getPassword()))

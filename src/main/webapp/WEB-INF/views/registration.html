@@ -12,43 +12,46 @@
         <h1 class="subscrH1">TX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PR</h1>
     </div>
     <form th:method="post" th:action="@{/txpr/registration}" th:object="${userAuthDTO}">
-    <section>
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div class="card-body p-5 text-center mainform">
 
-                <div class="for_img">
-                    <img src="../Images/logos/eagle_logo.png" alt="Eagle" style="width: 5.6rem; height: 5rem; margin-bottom: 2rem;">
-                </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-                <h3 class="mb-5" style="color:#cccccc">Регистрация</h3>
-                <div class="form-outline mb-4">
-                  <input type="text" th:field="*{username}" name="username" maxlength="100" required="" id="id_username" class="form-control form-control-lg myInput">
-                  <label class="form-label log_pass" for="id_username">Логин</label>
-                </div>
+        <section>
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                  <div class="card-body p-5 text-center mainform">
 
-                <div class="form-outline mb-4">
-                  <input type="password" th:field="*{password1}" name="password1" required="" id="id_password1" class="form-control form-control-lg myInput">
+                    <div class="for_img">
+                        <img src="../Images/logos/eagle_logo.png" alt="Eagle" style="width: 5.6rem; height: 5rem; margin-bottom: 2rem;">
+                    </div>
 
-                  <label th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}" class="form-label log_pass" for="id_password1" style="color: red;">IF ERROR</label>
-                  <label th:unless="${#fields.hasErrors('password1')}" class="form-label log_pass" for="id_password1">Пароль</label>
-                </div>
+                    <h3 class="mb-5" style="color:#cccccc">Регистрация</h3>
+                    <div class="form-outline mb-4">
+                      <input type="text" th:field="*{username}" name="username" maxlength="100" required="" id="id_username" class="form-control form-control-lg myInput">
+                      <label class="form-label log_pass" for="id_username">Логин</label>
+                    </div>
 
-                <div class="form-outline mb-4">
-                  <input type="password" th:field="*{password2}" name="password2" required="" id="id_password2" class="form-control form-control-lg myInput">
+                    <div class="form-outline mb-4">
+                      <input type="password" th:field="*{password1}" name="password1" required="" id="id_password1" class="form-control form-control-lg myInput">
 
-                  <label th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}" class="form-label log_pass" for="id_password1" style="color: red;">IF ERROR</label>
-                  <label th:unless="${#fields.hasErrors('password1')}" class="form-label log_pass" for="id_password1">Повторите пароль</label>
-                </div>
+                      <label th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}" class="form-label log_pass" for="id_password1" style="color: red;">IF ERROR</label>
+                      <label th:unless="${#fields.hasErrors('password1')}" class="form-label log_pass" for="id_password1">Пароль</label>
+                    </div>
 
-                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Зарегистрироваться">
-                <hr class="my-4" style="color: white">
+                    <div class="form-outline mb-4">
+                      <input type="password" th:field="*{password2}" name="password2" required="" id="id_password2" class="form-control form-control-lg myInput">
+
+                      <label th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}" class="form-label log_pass" for="id_password1" style="color: red;">IF ERROR</label>
+                      <label th:unless="${#fields.hasErrors('password1')}" class="form-label log_pass" for="id_password1">Повторите пароль</label>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Зарегистрироваться">
+                    <hr class="my-4" style="color: white">
+                  </div>
               </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
     </form>
     </body>
 </html>
